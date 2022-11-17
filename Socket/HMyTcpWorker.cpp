@@ -186,6 +186,7 @@ void HMyTcpWorker::msgHandle(QByteArray pByte)
         QBdata = sensor_analysisRcv(pByte);
         if (pByte[0] == 0x01 && pByte[1] == 0x03)
         {
+            
             //qDebug()<<QBdata.toHex();
 /* 第一行有bug */
 /*          cui->label_9 ->setText(QString("%1").arg((QBdata[6] * 256 + QBdata[7])/10.));
