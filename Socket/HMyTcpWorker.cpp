@@ -63,7 +63,7 @@ static const ushort crcTable[] = {
     0X4E00, 0X8EC1, 0X8F81, 0X4F40, 0X8D01, 0X4DC0, 0X4C80, 0X8C41,
     0X4400, 0X84C1, 0X8581, 0X4540, 0X8701, 0X47C0, 0X4680, 0X8641,
     0X8201, 0X42C0, 0X4380, 0X8341, 0X4100, 0X81C1, 0X8081, 0X4040};
-
+/* 接受数据 */
 void HMyTcpWorker::sltRevMessageFromServer()
 {
     HMyTcpSocket *tcpSocket = (HMyTcpSocket *)QObject::sender();
@@ -168,8 +168,8 @@ void HMyTcpWorker::ShowDO(QByteArray rst)
         }
     }
 }
-
-void HMyTcpWorker::msgHandle(QByteArray pByte) //对收到的消息进行处理
+/* 对收到的消息进行处理 */
+void HMyTcpWorker::msgHandle(QByteArray pByte) 
 {
     QString strData;
     strData = pByte.toHex();
@@ -187,8 +187,17 @@ void HMyTcpWorker::msgHandle(QByteArray pByte) //对收到的消息进行处理
         if (pByte[0] == 0x01 && pByte[1] == 0x03)
         {
             //qDebug()<<QBdata.toHex();
+/* 第一行有bug */
+/*          cui->label_9 ->setText(QString("%1").arg((QBdata[6] * 256 + QBdata[7])/10.));
+            cui->label_10->setText(QString("%1").arg((QBdata[4] * 256 + QBdata[5])/10.));
+            cui->label_11->setText(QString("%1").arg((QBdata[10] * 256 + QBdata[11])*10 ));
+            cui->label_16->setText(QString("%1").arg((QBdata[0] * 256 + QBdata[1]) ));
+            cui->label_17->setText(QString("%1").arg((QBdata[16] * 256 + QBdata[17]) )); */
+            
+            uchar val;
+            val = (QBdata[6] * 256 + QBdata[7])/10.;
 
-            cui->label_9-> setText(QString("%2").arg((QBdata[6] * 256 + QBdata[7])/10.));
+            cui->label_9 ->setText(QString("%2").arg((QBdata[6] * 256 + QBdata[7])/10.));
             cui->label_10->setText(QString("%2").arg((QBdata[4] * 256 + QBdata[5])/10.));
             cui->label_11->setText(QString("%2").arg((QBdata[10] * 256 + QBdata[11])*10 ));
             cui->label_16->setText(QString("%2").arg((QBdata[0] * 256 + QBdata[1]) ));
@@ -204,6 +213,10 @@ void HMyTcpWorker::msgHandle(QByteArray pByte) //对收到的消息进行处理
             cui->label_6->setText(QString("%2").arg((QBdata[0] * 256 + QBdata[1]) / 100.));
             cui->label_7->setText(QString("%2").arg((QBdata[2] * 256 + QBdata[3]) / 100.));
             cui->label_8->setText(QString("%2").arg(QBdata[4] * 256 + QBdata[5]));
+
+/*          cui->label_6->setText(QString("%1").arg((QBdata[0] * 256 + QBdata[1]) / 100.));
+            cui->label_7->setText(QString("%1").arg((QBdata[2] * 256 + QBdata[3]) / 100.));
+            cui->label_8->setText(QString("%1").arg(QBdata[4] * 256 + QBdata[5])); */
         }
     }
     break;
@@ -212,8 +225,8 @@ void HMyTcpWorker::msgHandle(QByteArray pByte) //对收到的消息进行处理
     }
     emit sigRevDataFromServer(strData);
 }
-
-void HMyTcpWorker::cuiInit() //对所有的按钮初始化
+/* 对所有的按钮初始化 */
+void HMyTcpWorker::cuiInit() 
 {
     m_heartTimer = new QTimer;
     count_num = 0;
