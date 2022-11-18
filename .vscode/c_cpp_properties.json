@@ -4,8 +4,11 @@
             "name": "Linux",
             "includePath": [
                 "${workspaceFolder}/**",
+<<<<<<< HEAD
                 "/usr/include/qt4/QtGui",
                 "/usr/include/qt4",
+=======
+>>>>>>> 283630b (1)
                 "/opt/Qt5.12.9/5.12.9/gcc_64/lib"
             ],
             "defines": [],

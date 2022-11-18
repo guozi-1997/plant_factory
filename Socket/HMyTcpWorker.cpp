@@ -12,7 +12,10 @@ QByteArray WriteAllDO(int io, bool openclose);
 QByteArray ReadAllDO();
 QByteArray GetHexValue(QString str);
 QByteArray analysisRcv(QByteArray src);
+<<<<<<< HEAD
 void Sleep(int msec);
+=======
+>>>>>>> 283630b (1)
 char ConvertHexChar(char ch);
 global_context sensor_struct[1];
 
@@ -63,7 +66,11 @@ static const ushort crcTable[] = {
     0X4E00, 0X8EC1, 0X8F81, 0X4F40, 0X8D01, 0X4DC0, 0X4C80, 0X8C41,
     0X4400, 0X84C1, 0X8581, 0X4540, 0X8701, 0X47C0, 0X4680, 0X8641,
     0X8201, 0X42C0, 0X4380, 0X8341, 0X4100, 0X81C1, 0X8081, 0X4040};
+<<<<<<< HEAD
 /* 接受数据 */
+=======
+
+>>>>>>> 283630b (1)
 void HMyTcpWorker::sltRevMessageFromServer()
 {
     HMyTcpSocket *tcpSocket = (HMyTcpSocket *)QObject::sender();
@@ -114,7 +121,9 @@ void HMyTcpWorker::sltSendData(QString data, int id)
         }
     }
 }
-
+void aaaa(){
+    
+}
 void HMyTcpWorker::sltConnectServer(QString hostName, int port, int timeout)
 {
     if (NULL == m_tcpSocket)
@@ -168,8 +177,13 @@ void HMyTcpWorker::ShowDO(QByteArray rst)
         }
     }
 }
+<<<<<<< HEAD
 /* 对收到的消息进行处理 */
 void HMyTcpWorker::msgHandle(QByteArray pByte) 
+=======
+
+void HMyTcpWorker::msgHandle(QByteArray pByte) //对收到的消息进行处理
+>>>>>>> 283630b (1)
 {
     QString strData;
     strData = pByte.toHex();
@@ -181,6 +195,7 @@ void HMyTcpWorker::msgHandle(QByteArray pByte)
             ShowDO(analysisRcv(pByte));
         break;
     case 777: //网口转串口的id号
+<<<<<<< HEAD
     {
         QByteArray QBdata;
         QBdata = sensor_analysisRcv(pByte);
@@ -221,13 +236,32 @@ void HMyTcpWorker::msgHandle(QByteArray pByte)
         }
     }
     break;
+=======
+        if (pByte[0] == 0x02 && pByte[1] == 0x04)
+        {
+            QByteArray QBdata;
+            QBdata = sensor_analysisRcv(pByte);
+            sensor_struct[0].tmp = (QBdata[0] * 256 + QBdata[1]) / 100.;
+            sensor_struct[0].humidity = (QBdata[2] * 256 + QBdata[3]) / 100.;
+            sensor_struct[0].elec = QBdata[4] * 256 + QBdata[5];
+            cui->label_6->setText(QString("%2").arg(sensor_struct[0].tmp) + "℃");
+            cui->label_7->setText(QString("%2").arg(sensor_struct[0].humidity) + "%");
+            cui->label_8->setText(QString("%2").arg(sensor_struct[0].elec));
+        }
+        break;
+>>>>>>> 283630b (1)
     default:
         break;
     }
     emit sigRevDataFromServer(strData);
 }
+<<<<<<< HEAD
 /* 对所有的按钮初始化 */
 void HMyTcpWorker::cuiInit() 
+=======
+
+void HMyTcpWorker::cuiInit() //对所有的按钮初始化
+>>>>>>> 283630b (1)
 {
     m_heartTimer = new QTimer;
     count_num = 0;
@@ -245,12 +279,16 @@ void HMyTcpWorker::cuiInit()
         algorithm_relay = new QSignalMapper();
         除了按键控制之外，还应预留控制list用于算法控制
         */
+<<<<<<< HEAD
         //btn_relay = (cui->page->findChildren<QPushButton *>());
 
         btn_relay << cui->switch_1 << cui->switch_2 << cui->switch_3
                   <<cui->switch_4 << cui->switch_5 << cui->switch_6
                  << cui->switch_7 << cui->switch_8 << cui->switch_9
                  << cui->switch_10 ;
+=======
+        btn_relay = (cui->page->findChildren<QPushButton *>());
+>>>>>>> 283630b (1)
         for (int i = 0; i < 10; i++)
         {
             // btn_relay[i] = new QPushButton();
@@ -360,17 +398,27 @@ void HMyTcpWorker::connection() //判断客户端是否连接，没连接就尝�
         switch (m_nID)
         {
         case 666:
+<<<<<<< HEAD
+=======
+            count_num++;
+>>>>>>> 283630b (1)
             if (count_num >= 400)
             {
                 m_tcpSocket->write(heartbeat); // 120s去ping一次
                 count_num = 0;
             }
+<<<<<<< HEAD
             count_num++;
             break;
         case 777:
             m_tcpSocket->write(soilParameterRq()); // 300ms刷新数据
             Sleep(10);                             //
             m_tcpSocket->write(weatherParameterRq());
+=======
+            break;
+        case 777:
+            m_tcpSocket->write(exterParameterRq2()); // 300ms刷新数据
+>>>>>>> 283630b (1)
             break;
         default:
             break;
@@ -378,6 +426,7 @@ void HMyTcpWorker::connection() //判断客户端是否连接，没连接就尝�
     }
 }
 
+<<<<<<< HEAD
 void Sleep(int msec)
 {
     QTime dieTime = QTime::currentTime().addMSecs(msec);
@@ -385,6 +434,8 @@ void Sleep(int msec)
         QCoreApplication::processEvents(QEventLoop::AllEvents, 100);
 }
 
+=======
+>>>>>>> 283630b (1)
 QByteArray writeID(int io, bool openclose) //打开or关闭第io个继电器
 {
     QByteArray src;

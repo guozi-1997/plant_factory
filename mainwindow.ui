@@ -116,7 +116,11 @@
      <string notr="true">background-color: #08D9D6;</string>
     </property>
     <property name="currentIndex">
+<<<<<<< HEAD
      <number>2</number>
+=======
+     <number>1</number>
+>>>>>>> 283630b (1)
     </property>
     <widget class="QWidget" name="page">
      <widget class="QWidget" name="layoutWidget">
@@ -513,7 +517,11 @@
         <rect>
          <x>11</x>
          <y>48</y>
+<<<<<<< HEAD
          <width>110</width>
+=======
+         <width>134</width>
+>>>>>>> 283630b (1)
          <height>261</height>
         </rect>
        </property>
@@ -733,7 +741,11 @@
         <rect>
          <x>11</x>
          <y>48</y>
+<<<<<<< HEAD
          <width>119</width>
+=======
+         <width>134</width>
+>>>>>>> 283630b (1)
          <height>261</height>
         </rect>
        </property>
@@ -883,7 +895,11 @@
        <rect>
         <x>20</x>
         <y>10</y>
+<<<<<<< HEAD
         <width>531</width>
+=======
+        <width>811</width>
+>>>>>>> 283630b (1)
         <height>401</height>
        </rect>
       </property>
@@ -893,7 +909,11 @@
        </font>
       </property>
       <property name="title">
+<<<<<<< HEAD
        <string>室内空气环境参数实时数据</string>
+=======
+       <string>室外空气环境参数实时数据</string>
+>>>>>>> 283630b (1)
       </property>
       <property name="alignment">
        <set>Qt::AlignCenter</set>
@@ -975,8 +995,13 @@
         <rect>
          <x>11</x>
          <y>48</y>
+<<<<<<< HEAD
          <width>119</width>
          <height>261</height>
+=======
+         <width>134</width>
+         <height>361</height>
+>>>>>>> 283630b (1)
         </rect>
        </property>
        <layout class="QVBoxLayout" name="verticalLayout_7">
@@ -1018,7 +1043,26 @@
            </font>
           </property>
           <property name="text">
+<<<<<<< HEAD
            <string>光照度：</string>
+=======
+           <string>大气压：</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="label_31">
+          <property name="font">
+           <font>
+            <pointsize>20</pointsize>
+           </font>
+          </property>
+          <property name="text">
+           <string>噪声：</string>
+>>>>>>> 283630b (1)
           </property>
           <property name="alignment">
            <set>Qt::AlignCenter</set>
@@ -1038,7 +1082,11 @@
        </property>
        <layout class="QVBoxLayout" name="verticalLayout_8">
         <item>
+<<<<<<< HEAD
          <widget class="QLabel" name="label_27">
+=======
+         <widget class="QLabel" name="label_28">
+>>>>>>> 283630b (1)
           <property name="font">
            <font>
             <pointsize>20</pointsize>
@@ -1053,14 +1101,22 @@
          </widget>
         </item>
         <item>
+<<<<<<< HEAD
          <widget class="QLabel" name="label_28">
+=======
+         <widget class="QLabel" name="label_33">
+>>>>>>> 283630b (1)
           <property name="font">
            <font>
             <pointsize>20</pointsize>
            </font>
           </property>
           <property name="text">
+<<<<<<< HEAD
            <string>CO2：</string>
+=======
+           <string>PM10:</string>
+>>>>>>> 283630b (1)
           </property>
           <property name="alignment">
            <set>Qt::AlignCenter</set>
@@ -1069,7 +1125,11 @@
         </item>
        </layout>
       </widget>
+<<<<<<< HEAD
       <widget class="QLabel" name="label_29">
+=======
+      <widget class="QLabel" name="label_30">
+>>>>>>> 283630b (1)
        <property name="geometry">
         <rect>
          <x>380</x>
@@ -1093,7 +1153,35 @@
         <set>Qt::AlignCenter</set>
        </property>
       </widget>
+<<<<<<< HEAD
       <widget class="QLabel" name="label_30">
+=======
+      <widget class="QLabel" name="label_32">
+       <property name="geometry">
+        <rect>
+         <x>130</x>
+         <y>340</y>
+         <width>121</width>
+         <height>51</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>20</pointsize>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(231, 255, 249);</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_35">
+>>>>>>> 283630b (1)
        <property name="geometry">
         <rect>
          <x>380</x>
@@ -1117,6 +1205,138 @@
         <set>Qt::AlignCenter</set>
        </property>
       </widget>
+<<<<<<< HEAD
+=======
+      <widget class="QLabel" name="label_53">
+       <property name="geometry">
+        <rect>
+         <x>660</x>
+         <y>60</y>
+         <width>131</width>
+         <height>51</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>20</pointsize>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(231, 255, 249);</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+      <widget class="QWidget" name="layoutWidget_8">
+       <property name="geometry">
+        <rect>
+         <x>540</x>
+         <y>50</y>
+         <width>114</width>
+         <height>261</height>
+        </rect>
+       </property>
+       <layout class="QVBoxLayout" name="verticalLayout_11">
+        <item>
+         <widget class="QLabel" name="label_54">
+          <property name="font">
+           <font>
+            <pointsize>20</pointsize>
+           </font>
+          </property>
+          <property name="text">
+           <string>风 速:</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="label_55">
+          <property name="font">
+           <font>
+            <pointsize>20</pointsize>
+           </font>
+          </property>
+          <property name="text">
+           <string>风 向:</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="label_56">
+          <property name="font">
+           <font>
+            <pointsize>20</pointsize>
+           </font>
+          </property>
+          <property name="text">
+           <string>光 照:</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QLabel" name="label_58">
+       <property name="geometry">
+        <rect>
+         <x>660</x>
+         <y>160</y>
+         <width>131</width>
+         <height>51</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>20</pointsize>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(231, 255, 249);</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_59">
+       <property name="geometry">
+        <rect>
+         <x>660</x>
+         <y>250</y>
+         <width>131</width>
+         <height>51</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>20</pointsize>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(231, 255, 249);</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+>>>>>>> 283630b (1)
      </widget>
     </widget>
    </widget>
