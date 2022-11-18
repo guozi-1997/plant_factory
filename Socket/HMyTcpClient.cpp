@@ -64,13 +64,13 @@ void HMyTcpClient::sltServerResult(int index)
     {
     case -1:
         m_bConnectedSuccess = false;
-        qDebug() << QString::fromLocal8Bit("连接服务器失败");
+        qDebug() << QString::fromLocal8Bit("连接服务器失败") << m_nHandle;
         break;
     case 0:
     {
         m_bConnectedSuccess = true;
         m_nHearTimeoutCount = 0;
-        qDebug() << QString::fromLocal8Bit("连接服务器成功");
+        qDebug() << QString::fromLocal8Bit("连接服务器成功") << m_nHandle;
         m_heartTimer->start(1000);
     }
     break;
@@ -122,11 +122,11 @@ void HMyTcpClient::sltHeartTimer()
         // qDebug() << QString::fromLocal8Bit("发送心跳包") << strHeart << m_nHandle;
         // emit sigSendData(strHeart, m_nHandle);
         /***************显示时间***********************/
-        QFont font("Microsoft YaHei", 20, 50);
-        QDateTime time = QDateTime::currentDateTime();
-        QString str = time.toString("yyyy-MM-dd hh:mm:ss dddd");
-        cui->time->setFont(font);
-        cui->time->setText(str);
+        /*         QFont font("Microsoft YaHei", 20, 50);
+                QDateTime time = QDateTime::currentDateTime();
+                QString str = time.toString("yyyy-MM-dd hh:mm:ss dddd");
+                cui->time->setFont(font);
+                cui->time->setText(str); */
     }
 }
 

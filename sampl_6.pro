@@ -1,4 +1,5 @@
-QT       += core gui network sql serialport serialbus
+QT       += core gui network sql serialport serialbus \
+    quick
 #CONFIG += serialport
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -20,6 +21,7 @@ SOURCES += \
     Socket/HMyTcpSocket.cpp \
     Socket/HMyTcpWorker.cpp \
     global/global.cpp \
+    imageSwitch/imageswitch.cpp \
     main.cpp \
     mainwindow.cpp \
 
@@ -28,6 +30,7 @@ HEADERS += \
     Socket/HMyTcpSocket.h \
     Socket/HMyTcpWorker.h \
     global/global.h \
+    imageSwitch/imageswitch.h \
     mainwindow.h \
 
 FORMS += \
@@ -45,3 +48,6 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 DISTFILES += \
     abcde.py
+
+RESOURCES += \
+    res.qrc

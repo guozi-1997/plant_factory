@@ -1,2 +1,0 @@
-# plant_factory
-disc

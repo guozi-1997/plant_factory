@@ -12,10 +12,7 @@ QByteArray WriteAllDO(int io, bool openclose);
 QByteArray ReadAllDO();
 QByteArray GetHexValue(QString str);
 QByteArray analysisRcv(QByteArray src);
-<<<<<<< HEAD
 void Sleep(int msec);
-=======
->>>>>>> 283630b (1)
 char ConvertHexChar(char ch);
 global_context sensor_struct[1];
 
@@ -66,11 +63,7 @@ static const ushort crcTable[] = {
     0X4E00, 0X8EC1, 0X8F81, 0X4F40, 0X8D01, 0X4DC0, 0X4C80, 0X8C41,
     0X4400, 0X84C1, 0X8581, 0X4540, 0X8701, 0X47C0, 0X4680, 0X8641,
     0X8201, 0X42C0, 0X4380, 0X8341, 0X4100, 0X81C1, 0X8081, 0X4040};
-<<<<<<< HEAD
-/* 接受数据 */
-=======
 
->>>>>>> 283630b (1)
 void HMyTcpWorker::sltRevMessageFromServer()
 {
     HMyTcpSocket *tcpSocket = (HMyTcpSocket *)QObject::sender();
@@ -121,9 +114,7 @@ void HMyTcpWorker::sltSendData(QString data, int id)
         }
     }
 }
-void aaaa(){
-    
-}
+
 void HMyTcpWorker::sltConnectServer(QString hostName, int port, int timeout)
 {
     if (NULL == m_tcpSocket)
@@ -157,8 +148,6 @@ void HMyTcpWorker::sltConnectServer(QString hostName, int port, int timeout)
 void HMyTcpWorker::ShowDO(QByteArray rst)
 {
     QString str = "继电器";
-    if (rst == NULL)
-        return;
     uchar status = rst[0];
     for (int i = 0; i < 8; i++)
     {
@@ -177,100 +166,109 @@ void HMyTcpWorker::ShowDO(QByteArray rst)
         }
     }
 }
-<<<<<<< HEAD
-/* 对收到的消息进行处理 */
-void HMyTcpWorker::msgHandle(QByteArray pByte) 
-=======
 
 void HMyTcpWorker::msgHandle(QByteArray pByte) //对收到的消息进行处理
->>>>>>> 283630b (1)
 {
     QString strData;
     strData = pByte.toHex();
     pByte = GetHexValue(strData); //这两行意味着你可以获取一个strData的字符串，并且还能重新获取pByete
+    uchar src_0 = pByte[0], src_1 = pByte[1];
+    // qDebug() <<strData;
     switch (m_nID)
     {
     case 666: // 666是继电器的id号，这个Id是程序设定的
-        if (pByte[1] == 0x01)
+        if (src_1 == 0x01)
             ShowDO(analysisRcv(pByte));
         break;
     case 777: //网口转串口的id号
-<<<<<<< HEAD
     {
         QByteArray QBdata;
         QBdata = sensor_analysisRcv(pByte);
-        if (pByte[0] == 0x01 && pByte[1] == 0x03)
+        // qDebug()<<strData;
+        if (src_0 == 0x01 && src_1 == 0x03)
         {
-            
-            //qDebug()<<QBdata.toHex();
-/* 第一行有bug */
-/*          cui->label_9 ->setText(QString("%1").arg((QBdata[6] * 256 + QBdata[7])/10.));
-            cui->label_10->setText(QString("%1").arg((QBdata[4] * 256 + QBdata[5])/10.));
-            cui->label_11->setText(QString("%1").arg((QBdata[10] * 256 + QBdata[11])*10 ));
-            cui->label_16->setText(QString("%1").arg((QBdata[0] * 256 + QBdata[1]) ));
-            cui->label_17->setText(QString("%1").arg((QBdata[16] * 256 + QBdata[17]) )); */
-            
-            uchar val;
-            val = (QBdata[6] * 256 + QBdata[7])/10.;
+            // qDebug() << QBdata.toHex();
+            // qDebug() << "val";
+            // QString str = QString("%1").arg(QBdata[7]);
+            // qDebug() << str;
+            uchar val = QBdata[7];
+            uchar val_1 = QBdata[6];
+            float val_2;
+            if (val_1 & 0xFC) /* 零下 */
+            {
+                val_2 = (val_1 << 8) | val;
+                val_2 = (val_2 - 65535) / 10.;
+            }
 
-            cui->label_9 ->setText(QString("%2").arg((QBdata[6] * 256 + QBdata[7])/10.));
-            cui->label_10->setText(QString("%2").arg((QBdata[4] * 256 + QBdata[5])/10.));
-            cui->label_11->setText(QString("%2").arg((QBdata[10] * 256 + QBdata[11])*10 ));
-            cui->label_16->setText(QString("%2").arg((QBdata[0] * 256 + QBdata[1]) ));
-            cui->label_17->setText(QString("%2").arg((QBdata[16] * 256 + QBdata[17]) ));
-
+            else /* 零上 */
+            {
+                val_2 = ((val_1 << 8) | val) / 10.;
+            }
+            /* 这里有bug，只能用这样的方式去写 */
+            // cui->label_9->setText(QString("%1").arg(tmp));
+            cui->label_9->setText(QString("%1").arg(val_2));
+            cui->label_10->setText(QString("%1").arg((QBdata[4] * 256 + QBdata[5]) / 10.));
+            cui->label_11->setText(QString("%1").arg((QBdata[10] * 256 + QBdata[11]) * 10));
+            cui->label_16->setText(QString("%1").arg((QBdata[0] * 256 + QBdata[1])));
+            cui->label_17->setText(QString("%1").arg((QBdata[16] * 256 + QBdata[17])));
         }
 
-        if (pByte[0] == 0x02 && pByte[1] == 0x04)
+        if (src_0 == 0x02 && src_1 == 0x04)
         {
             sensor_struct[0].tmp = (QBdata[0] * 256 + QBdata[1]) / 100.;
             sensor_struct[0].humidity = (QBdata[2] * 256 + QBdata[3]) / 100.;
             sensor_struct[0].elec = QBdata[4] * 256 + QBdata[5];
-            cui->label_6->setText(QString("%2").arg((QBdata[0] * 256 + QBdata[1]) / 100.));
-            cui->label_7->setText(QString("%2").arg((QBdata[2] * 256 + QBdata[3]) / 100.));
-            cui->label_8->setText(QString("%2").arg(QBdata[4] * 256 + QBdata[5]));
-
-/*          cui->label_6->setText(QString("%1").arg((QBdata[0] * 256 + QBdata[1]) / 100.));
+            cui->label_6->setText(QString("%1").arg((QBdata[0] * 256 + QBdata[1]) / 100.));
             cui->label_7->setText(QString("%1").arg((QBdata[2] * 256 + QBdata[3]) / 100.));
-            cui->label_8->setText(QString("%1").arg(QBdata[4] * 256 + QBdata[5])); */
+            cui->label_8->setText(QString("%1").arg(QBdata[4] * 256 + QBdata[5]));
+        }
+        if (src_0 == 0x66 && src_1 == 0x03)
+        {
+            cui->label_21->setText(QString("%1").arg((QBdata[0] * 256 + QBdata[1]) / 100.));
+            cui->label_22->setText(QString("%1").arg((QBdata[2] * 256 + QBdata[3]) / 100.));
+            cui->label_23->setText(QString("%1").arg((QBdata[4] * 256 + QBdata[5]) / 100.));
+            cui->label_32->setText(QString("%1").arg((QBdata[6] * 256 + QBdata[7]) / 10.));
+            /*       ui->label_22->setText(QString("%1").arg((QBdata[2] * 256 + QBdata[3]) / 100.));
+                     cui->label_23->setText(QString("%1").arg(QBdata[4] * 256 + QBdata[5])); */
+        }
+        /* *********************************室外参数**************************************************** */
+        if (src_0 == 0x8a && src_1 == 0x03) /* 室外PM2.5、PM10 */
+        {
+            // qDebug() << strData << "data:" << QBdata.toHex();
+            //  cui->label_29->setText(QString("%1").arg((QBdata[0] * 256 + QBdata[1])));
+            cui->label_30->setText(QString("%1").arg((QBdata[0] * 256 + QBdata[1])));
+            cui->label_35->setText(QString("%1").arg((QBdata[2] * 256 + QBdata[3])));
+        }
+        if (src_0 == 0xcc && src_1 == 0x03) /* 光照   辐射 */
+        {
+            // qDebug() << strData << "data:" << QBdata.toHex();
+            cui->label_59->setText(QString("%1").arg((pByte[5] * 256 + pByte[6])));
+            // cui->label_60->setText(QString("%1").arg((QBdata[7] * 256 + QBdata[8])));
+        }
+        if (src_0 == 0xc8 && src_1 == 0x03) /* 风速风向 */
+        {
+            cui->label_53->setText(QString("%1").arg((QBdata[0] * 256 + QBdata[1])));
+            cui->label_58->setText(QString("%1").arg((QBdata[2] * 256 + QBdata[3])));
         }
     }
     break;
-=======
-        if (pByte[0] == 0x02 && pByte[1] == 0x04)
-        {
-            QByteArray QBdata;
-            QBdata = sensor_analysisRcv(pByte);
-            sensor_struct[0].tmp = (QBdata[0] * 256 + QBdata[1]) / 100.;
-            sensor_struct[0].humidity = (QBdata[2] * 256 + QBdata[3]) / 100.;
-            sensor_struct[0].elec = QBdata[4] * 256 + QBdata[5];
-            cui->label_6->setText(QString("%2").arg(sensor_struct[0].tmp) + "℃");
-            cui->label_7->setText(QString("%2").arg(sensor_struct[0].humidity) + "%");
-            cui->label_8->setText(QString("%2").arg(sensor_struct[0].elec));
-        }
-        break;
->>>>>>> 283630b (1)
     default:
         break;
     }
     emit sigRevDataFromServer(strData);
 }
-<<<<<<< HEAD
-/* 对所有的按钮初始化 */
-void HMyTcpWorker::cuiInit() 
-=======
 
 void HMyTcpWorker::cuiInit() //对所有的按钮初始化
->>>>>>> 283630b (1)
 {
     m_heartTimer = new QTimer;
     count_num = 0;
     connect(m_heartTimer, SIGNAL(timeout()), this, SLOT(sltHeartTimer())); //建立一个心跳包
     /*
         在新开的心跳包中，尽量做较少的事情，因为心跳包会耗费很大的资源
-     */
+    */
     heartbeat[0] = 0x01, heartbeat[1] = 0x02, heartbeat[2] = 0x04;
-    m_heartTimer->start(300);
+    m_heartTimer->start(1000);
+
     switch (m_nID)
     {
     case 666:
@@ -279,16 +277,12 @@ void HMyTcpWorker::cuiInit() //对所有的按钮初始化
         algorithm_relay = new QSignalMapper();
         除了按键控制之外，还应预留控制list用于算法控制
         */
-<<<<<<< HEAD
-        //btn_relay = (cui->page->findChildren<QPushButton *>());
+        // btn_relay = (cui->page->findChildren<QPushButton *>());
 
         btn_relay << cui->switch_1 << cui->switch_2 << cui->switch_3
-                  <<cui->switch_4 << cui->switch_5 << cui->switch_6
-                 << cui->switch_7 << cui->switch_8 << cui->switch_9
-                 << cui->switch_10 ;
-=======
-        btn_relay = (cui->page->findChildren<QPushButton *>());
->>>>>>> 283630b (1)
+                  << cui->switch_4 << cui->switch_5 << cui->switch_6
+                  << cui->switch_7 << cui->switch_8 << cui->switch_9
+                  << cui->switch_10;
         for (int i = 0; i < 10; i++)
         {
             // btn_relay[i] = new QPushButton();
@@ -297,8 +291,9 @@ void HMyTcpWorker::cuiInit() //对所有的按钮初始化
         }
         connect(map_relay, SIGNAL(mapped(int)), this, SLOT(buttonClicked_relay(int)));
         break;
-    case 777: //暂时还没想好做好什么事情
-              // connect(cui->production_monitoring, SIGNAL(clicked(bool)), this, SLOT(SensorRequest()));
+    case 777:
+        //暂时还没想好做好什么事情
+        // connect(cui->production_monitoring, SIGNAL(clicked(bool)), this, SLOT(SensorRequest()));
     default:
         break;
     }
@@ -398,27 +393,32 @@ void HMyTcpWorker::connection() //判断客户端是否连接，没连接就尝�
         switch (m_nID)
         {
         case 666:
-<<<<<<< HEAD
-=======
-            count_num++;
->>>>>>> 283630b (1)
-            if (count_num >= 400)
+            if (count_num >= 20)
             {
                 m_tcpSocket->write(heartbeat); // 120s去ping一次
                 count_num = 0;
             }
-<<<<<<< HEAD
             count_num++;
             break;
-        case 777:
-            m_tcpSocket->write(soilParameterRq()); // 300ms刷新数据
-            Sleep(10);                             //
-            m_tcpSocket->write(weatherParameterRq());
-=======
-            break;
-        case 777:
-            m_tcpSocket->write(exterParameterRq2()); // 300ms刷新数据
->>>>>>> 283630b (1)
+        case 777: // 1000ms刷新数据
+
+            m_tcpSocket->write(soilParameterRq()); //土壤三参
+
+            Sleep(300);                               //
+            m_tcpSocket->write(weatherParameterRq()); //室内
+            //Sleep(150);
+            /* 室外 */
+            // qDebug()<<"123";
+           // m_tcpSocket->write(exterParameterRq1()); // PM2.5、PM10
+           // Sleep(150);                              /*  */
+           // m_tcpSocket->write(exterParameterRq2()); // 温湿度气压噪声
+           // Sleep(150);
+           // m_tcpSocket->write(exterParameterRq3()); // 光照 辐照
+           // Sleep(150);
+           // m_tcpSocket->write(exterParameterRq4()); // 风速、风向
+           // Sleep(150);
+            //m_tcpSocket->write(exterParameterRq5()); // 这个有点难，没搞懂
+
             break;
         default:
             break;
@@ -426,7 +426,6 @@ void HMyTcpWorker::connection() //判断客户端是否连接，没连接就尝�
     }
 }
 
-<<<<<<< HEAD
 void Sleep(int msec)
 {
     QTime dieTime = QTime::currentTime().addMSecs(msec);
@@ -434,8 +433,6 @@ void Sleep(int msec)
         QCoreApplication::processEvents(QEventLoop::AllEvents, 100);
 }
 
-=======
->>>>>>> 283630b (1)
 QByteArray writeID(int io, bool openclose) //打开or关闭第io个继电器
 {
     QByteArray src;

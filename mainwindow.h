@@ -6,6 +6,8 @@
 #include <QVector>
 #include <QSignalMapper>
 #include "Socket/HMyTcpClient.h"
+#include <QTimer>
+#include <QTime>
 
 QT_BEGIN_NAMESPACE
 namespace Ui
@@ -26,6 +28,8 @@ public:
 
 private slots:
     void Maininterface_ctl(int flag);
+    void on_pushButton_clicked();
+    void sltHeartTimer();
 
 private:
     void uiInit();
@@ -33,6 +37,8 @@ private:
     QList<QPushButton *> Maininterface_btn;
     HMyTcpClient *relay_tcpClient;
     HMyTcpClient *sensor_tcpClient;
+    QTimer *m_heartTimer;
+    int i_but = 0;
 };
 
 #endif // MAINWINDOW_H

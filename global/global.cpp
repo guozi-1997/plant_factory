@@ -70,29 +70,17 @@ QByteArray weatherParameterRq()
 /****************************室外气象站传感器***************************************/
 
 /*
-<<<<<<< HEAD
- *CO2 PM2.5 PM10 TSP
-=======
  *CO2 PM2.5 PM10
->>>>>>> 283630b (1)
  */
 QByteArray exterParameterRq1()
 {
     QByteArray src;
-<<<<<<< HEAD
-    src[0] = 0x8a;
-=======
     src[0] = 0x8A;
->>>>>>> 283630b (1)
     src[1] = 0x03;
     src[2] = 0x00;
     src[3] = 0x00;
     src[4] = 0x00;
-<<<<<<< HEAD
-    src[5] = 0x04;
-=======
     src[5] = 0x02;
->>>>>>> 283630b (1)
     unsigned int crc16 = 0;
     crc16 = calc_crc16(src, 6);
     src[6] = crc16 % 256;
@@ -129,11 +117,7 @@ QByteArray exterParameterRq3()
     src[2] = 0x00;
     src[3] = 0x03;
     src[4] = 0x00;
-<<<<<<< HEAD
-    src[5] = 0x01;
-=======
     src[5] = 0x03;
->>>>>>> 283630b (1)
     unsigned int crc16 = 0;
     crc16 = calc_crc16(src, 6);
     src[6] = crc16 % 256;
@@ -150,11 +134,7 @@ QByteArray exterParameterRq4()
     src[0] = 0xc8;
     src[1] = 0x03;
     src[2] = 0x00;
-<<<<<<< HEAD
-    src[3] = 0x03;
-=======
     src[3] = 0x00;
->>>>>>> 283630b (1)
     src[4] = 0x00;
     src[5] = 0x02;
     unsigned int crc16 = 0;
@@ -186,13 +166,8 @@ QByteArray exterParameterRq5()
 QByteArray sensor_analysisRcv(QByteArray src)
 {
     QByteArray dst;
-<<<<<<< HEAD
-
-    if (src[0] == 0x01 && src[1] == 0x03) //室内
-=======
     uchar src_1 = src[0], src_2 = src[1];
     if (src_1 == 0x01 && src_2 == 0x03) //室内
->>>>>>> 283630b (1)
     {
         if (calc_crc16(src, 23) == 0)
         {
@@ -201,11 +176,7 @@ QByteArray sensor_analysisRcv(QByteArray src)
             return dst;
         }
     }
-<<<<<<< HEAD
-    else if (src[0] == 0x02 && src[1] == 0x04) //土壤
-=======
     else if (src_1 == 0x02 && src_2 == 0x04) //土壤
->>>>>>> 283630b (1)
     {
         if (calc_crc16(src, 11) == 0)
         {
@@ -218,11 +189,7 @@ QByteArray sensor_analysisRcv(QByteArray src)
             return dst;
         }
     }
-<<<<<<< HEAD
-    else if (src[0] == 0x8a && src[1] == 0x03)
-=======
     else if (src_1 == 0x8a && src_2 == 0x03)
->>>>>>> 283630b (1)
     {
         if (calc_crc16(src, 13) == 0)
         {
@@ -231,11 +198,7 @@ QByteArray sensor_analysisRcv(QByteArray src)
             return dst;
         }
     }
-<<<<<<< HEAD
-    else if (src[0] == 0x66 && src[1] == 0x03)
-=======
     else if (src_1 == 0x66 && src_2 == 0x03)
->>>>>>> 283630b (1)
     {
         if (calc_crc16(src, 13) == 0)
         {
@@ -244,11 +207,7 @@ QByteArray sensor_analysisRcv(QByteArray src)
             return dst;
         }
     }
-<<<<<<< HEAD
-    else if (src[0] == 0xc8 && src[1] == 0x03)
-=======
     else if (src_1 == 0xc8 && src_2 == 0x03)
->>>>>>> 283630b (1)
     {
         if (calc_crc16(src, 9) == 0)
         {
@@ -257,18 +216,6 @@ QByteArray sensor_analysisRcv(QByteArray src)
             return dst;
         }
     }
-<<<<<<< HEAD
-    else if (src[0] == 0xcc && src[1] == 0x03)
-    {
-        if (calc_crc16(src, 9) == 0)
-        {
-            for (int i = 0; i < src[2]; i++)
-                dst[i] = src[3 + i];
-            return dst;
-        }
-    }
-    else if (src[0] == 0xca && src[1] == 0x03)
-=======
     /*     else if (src_1 == 0xcc && src_2 == 0x03)
         {
             if (calc_crc16(src, 9) == 0)
@@ -279,7 +226,6 @@ QByteArray sensor_analysisRcv(QByteArray src)
             }
         } */
     else if (src_1 == 0xca && src_2 == 0x03)
->>>>>>> 283630b (1)
     {
         if (calc_crc16(src, 9) == 0)
         {

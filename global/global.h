@@ -15,12 +15,9 @@ QByteArray sensor_analysisRcv(QByteArray src);
 unsigned int calc_crc16(QByteArray snd, unsigned char num);
 QByteArray soilParameterRq();
 QByteArray weatherParameterRq();
-<<<<<<< HEAD
-=======
 QByteArray exterParameterRq1();
 QByteArray exterParameterRq2();
 QByteArray exterParameterRq3();
 QByteArray exterParameterRq4();
 QByteArray exterParameterRq5();
->>>>>>> 283630b (1)
 #endif // GLOBAL_H

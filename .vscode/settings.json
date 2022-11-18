@@ -7,16 +7,12 @@
         "*.tcc": "cpp",
         "new": "cpp",
         "random": "cpp",
-<<<<<<< HEAD
-        "limits": "cpp"
-=======
         "limits": "cpp",
         "iostream": "cpp",
         "array": "cpp",
         "string_view": "cpp",
         "initializer_list": "cpp",
         "utility": "cpp"
->>>>>>> 283630b (1)
     },
     "C_Cpp.errorSquiggles": "Disabled"
 }

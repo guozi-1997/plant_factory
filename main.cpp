@@ -1,4 +1,4 @@
-﻿
+
 #include "mainwindow.h"
 #include <QApplication>
 #include <QTextCodec>
@@ -23,8 +23,9 @@ int main(int argc, char *argv[])
     QTextCodec *codec = QTextCodec::codecForName("UTF-8");
     QTextCodec::setCodecForLocale(codec);
 #endif
-
+    qputenv("QT_IM_MODULE", QByteArray("qtvirtualkeyboard"));
     MainWindow w;
-    w.show();
+    //w.show();
+    w.showFullScreen();
     return a.exec();
 }

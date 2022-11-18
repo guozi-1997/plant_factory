@@ -31,9 +31,11 @@ private:
     int m_port;
     int m_timeout;
     bool flag_num[10] = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1};
+    bool flag_modbus[10];
 
 signals:
-    void sigSendData2TcpSocket(QString data, int id);
+    void
+    sigSendData2TcpSocket(QString data, int id);
     void sigDisConnectTcpSocket(int id);
 
     void sigResult(int id);

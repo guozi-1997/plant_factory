@@ -2,7 +2,6 @@
 #define HMYTCPCLIENT_H
 
 #include <QObject>
-#include <QTimer>
 #include <QThread>
 #include "ui_mainwindow.h"
 #define HTCPCLIENT_HEART_TIMEOUT_COUNT 3
@@ -11,7 +10,7 @@ class HMyTcpClient : public QObject
 {
      Q_OBJECT
 public:
-     explicit HMyTcpClient(int Handle,QObject *parent = 0);
+     explicit HMyTcpClient(int Handle, QObject *parent = 0);
 
      //连接服务器，参数包括是否断线重连
      bool connetServer(QString hostName, int port, int timeout = 3000, bool bAutoReconnect = true);
@@ -21,8 +20,8 @@ public:
      bool isConnected();
      Ui::MainWindow *cui;
      int m_nHandle;
-private:
 
+private:
      bool m_bConnectedSuccess;
      QThread *m_thread;
      QTimer *m_heartTimer;
