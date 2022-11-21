@@ -29,6 +29,10 @@ void MainWindow::uiInit()
     connect(m_heartTimer, SIGNAL(timeout()), this, SLOT(sltHeartTimer()));
     m_heartTimer->start(1000);
 
+    QDateTime time = QDateTime::currentDateTime();
+    QString str = time.toString("yyyy-MM-dd hh:mm:ss dddd");
+    ui->time->setText(str);
+
     relay_tcpClient = new HMyTcpClient(666);
     relay_tcpClient->cui = ui;
     if (relay_tcpClient && !relay_tcpClient->isConnected())
@@ -41,6 +45,13 @@ void MainWindow::uiInit()
     if (sensor_tcpClient && !sensor_tcpClient->isConnected())
     {
         sensor_tcpClient->connetServer("192.168.2.81", 10123);
+    }
+
+    led_tcpClient = new HMyTcpClient(888);
+    led_tcpClient->cui = ui;
+    if (led_tcpClient && !led_tcpClient->isConnected())
+    {
+        led_tcpClient->connetServer("192.168.2.110", 17222);
     }
 
     Maininterface_map = new QSignalMapper();
@@ -83,9 +94,7 @@ void MainWindow::on_pushButton_clicked()
 void MainWindow::sltHeartTimer()
 {
     /***************显示时间***********************/
-    // QFont font("Microsoft YaHei", 20, 50);
     QDateTime time = QDateTime::currentDateTime();
     QString str = time.toString("yyyy-MM-dd hh:mm:ss dddd");
-    // ui->time->setFont(font);
     ui->time->setText(str);
 }

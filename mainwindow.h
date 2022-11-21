@@ -37,6 +37,7 @@ private:
     QList<QPushButton *> Maininterface_btn;
     HMyTcpClient *relay_tcpClient;
     HMyTcpClient *sensor_tcpClient;
+    HMyTcpClient *led_tcpClient;
     QTimer *m_heartTimer;
     int i_but = 0;
 };

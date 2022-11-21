@@ -1941,16 +1941,6 @@ border:none;</string>
        <string/>
       </property>
      </widget>
-     <widget class="QLineEdit" name="lineEdit">
-      <property name="geometry">
-       <rect>
-        <x>290</x>
-        <y>490</y>
-        <width>113</width>
-        <height>25</height>
-       </rect>
-      </property>
-     </widget>
     </widget>
    </widget>
    <widget class="QWidget" name="widget_2" native="true">

@@ -143,6 +143,7 @@ void HMyTcpWorker::sltConnectServer(QString hostName, int port, int timeout)
             m_tcpSocket->write(ReadAllDO()); //如果重新连接成功，就读取继电器当前状态
         }
     }
+    connection();
 }
 
 void HMyTcpWorker::ShowDO(QByteArray rst)
@@ -406,18 +407,18 @@ void HMyTcpWorker::connection() //判断客户端是否连接，没连接就尝�
 
             Sleep(300);                               //
             m_tcpSocket->write(weatherParameterRq()); //室内
-            //Sleep(150);
+            // Sleep(150);
             /* 室外 */
             // qDebug()<<"123";
-           // m_tcpSocket->write(exterParameterRq1()); // PM2.5、PM10
-           // Sleep(150);                              /*  */
-           // m_tcpSocket->write(exterParameterRq2()); // 温湿度气压噪声
-           // Sleep(150);
-           // m_tcpSocket->write(exterParameterRq3()); // 光照 辐照
-           // Sleep(150);
-           // m_tcpSocket->write(exterParameterRq4()); // 风速、风向
-           // Sleep(150);
-            //m_tcpSocket->write(exterParameterRq5()); // 这个有点难，没搞懂
+            // m_tcpSocket->write(exterParameterRq1()); // PM2.5、PM10
+            // Sleep(150);                              /*  */
+            // m_tcpSocket->write(exterParameterRq2()); // 温湿度气压噪声
+            // Sleep(150);
+            // m_tcpSocket->write(exterParameterRq3()); // 光照 辐照
+            // Sleep(150);
+            // m_tcpSocket->write(exterParameterRq4()); // 风速、风向
+            // Sleep(150);
+            // m_tcpSocket->write(exterParameterRq5()); // 这个有点难，没搞懂
 
             break;
         default:
