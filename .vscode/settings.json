@@ -1,0 +1,18 @@
+{
+    "files.associations": {
+        "qwidget": "cpp",
+        "qtcpsocket": "cpp",
+        "qsignalmapper": "cpp",
+        "qpushbutton": "cpp",
+        "*.tcc": "cpp",
+        "new": "cpp",
+        "random": "cpp",
+        "limits": "cpp",
+        "iostream": "cpp",
+        "array": "cpp",
+        "string_view": "cpp",
+        "initializer_list": "cpp",
+        "utility": "cpp"
+    },
+    "C_Cpp.errorSquiggles": "Disabled"
+}
